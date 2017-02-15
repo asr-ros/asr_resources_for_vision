@@ -1,0 +1,5 @@
+#Settings depending on concrete camera type.
+
+bayer_pattern: rggb
+auto_shutter: 2
+auto_white_balance: 2

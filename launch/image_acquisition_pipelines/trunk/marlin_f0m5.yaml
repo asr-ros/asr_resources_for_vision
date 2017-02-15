@@ -1,0 +1,5 @@
+#Some settings how we use marlin cameras.
+video_mode: 640x480_mono8
+frame_rate: 15 
+
+format7_color_coding: mono8

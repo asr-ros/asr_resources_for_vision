@@ -1,0 +1,78 @@
+<!--
+Copyright (c) 2016, Heizmann Heinrich, Meissner Pascal 
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+-->
+
+<!-- Stereo rig launch. @author Pascal Meissner. @version See SVN -->
+
+<!-- This is the generic framework to start data acquisition for stereo rigs we use. -->
+<!-- Contains no settings concerning a specific type of camera. -->
+<launch>
+
+  <!-- Variables for externally set configs for a certain stereo rig. -->
+  <arg name="left_camera_guid" />
+  <arg name="right_camera_guid" />
+
+  <arg name="stereo_rig_configs_path" />
+
+  <!-- Variables for externally set configs for a specific user. -->
+  <arg name="left_camera_info_url" />
+  <arg name="right_camera_info_url" />
+
+  <arg name="user_configs_for_both_cams_path" />
+
+  <!-- Run both cameras in the stereo namespace -->
+  <group ns="stereo">
+
+    <!-- Start left camera grabbing and parametrize it. -->
+    <node name="left" type="camera1394_node"  pkg="camera1394" output="screen">
+
+      <!-- Stereo rig generic. -->
+      <remap from="camera" to="left"/>
+      <param name="frame_id" value="camera_left_frame"/>
+      <!-- For a certain stereo rig. -->
+      <param name="guid" value="$(arg left_camera_guid)"/>
+      <!-- User dependent. -->
+      <param name="camera_info_url" value="$(arg left_camera_info_url)"/>
+
+      <rosparam file="$(arg stereo_rig_configs_path)"/>
+      <rosparam file="$(arg user_configs_for_both_cams_path)"/>
+
+    </node>
+
+    <!-- Start right camera grabbing and parametrize it. -->
+    <node name="right" type="camera1394_node"  pkg="camera1394" output="screen">
+
+      <!-- Stereo rig generic. -->
+      <remap from="camera" to="right"/>
+      <param name="frame_id" value="camera_left_frame"/>
+      <!-- For a certain stereo rig. -->
+      <param name="guid" value="$(arg right_camera_guid)"/>
+      <!-- User dependent. -->
+      <param name="camera_info_url" value="$(arg right_camera_info_url)"/>
+
+      <rosparam file="$(arg stereo_rig_configs_path)"/>
+      <rosparam file="$(arg user_configs_for_both_cams_path)"/>
+
+    </node>
+
+    <!-- Process separately acquired image data to get a pair of rectified color images. -->
+    <include file="$(find asr_resources_for_vision)/launch/image_acquisition_pipelines/unsynced_stereo_proc.launch"/>  
+
+  </group>
+
+</launch>
+
+
+
+

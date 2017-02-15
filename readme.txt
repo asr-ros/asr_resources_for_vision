@@ -1,0 +1,4 @@
+This package contains launch scripts to start data acquisition from vision sensors.
+
+- Currently there is a generic stereo camera launch system in subfolder 'launch/image_acquisition_pipelines'.
+  	    -> Launch system is subdevided in three parts. There is a conceptual part (being equal for all stereo rigs, we employ), that is called by scripts in 'launch/image_acquisition_pipelines/stereo_rigs'. In that folder, there is a script representing a concrete hardware setup independently of user specific settings, used for this setup. A script for a certain setup of sensors is either called by a script containing user settings in 'launch/image_acquisition_pipelines/users/USERNAME' or by a script in 'launch/image_acquisition_pipelines/trunk' which represent best available settings for a sensor setup.

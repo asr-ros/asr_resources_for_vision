@@ -1,0 +1,5 @@
+#Some settings how we use guppy pro cameras.
+video_mode: format7_mode0
+format7_packet_size: 1920 
+
+format7_color_coding: raw8

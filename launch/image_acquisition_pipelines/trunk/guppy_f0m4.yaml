@@ -1,0 +1,3 @@
+#Some settings how we use guppy pro cameras.
+video_mode: 640x480_rgb8
+frame_rate: 15
