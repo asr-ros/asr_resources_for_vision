@@ -7,7 +7,7 @@
     Currently it contains the launch scripts that are start up data acquisition from vision sensors (stereo camera system and kinect). 
   </description>
   <author>Heizmann Heinrich, Meißner Pascal</author>
-  <maintainer email="pascal.meissner@posteo.de">Meißner Pascal</maintainer>
+  <maintainer email="asr-ros@lists.kit.edu">Meißner Pascal</maintainer>
   <license>BSD</license>
 
   <buildtool_depend>catkin</buildtool_depend>
