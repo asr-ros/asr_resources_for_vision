@@ -9,6 +9,7 @@
   <author>Heizmann Heinrich, Meißner Pascal</author>
   <maintainer email="asr-ros@lists.kit.edu">Meißner Pascal</maintainer>
   <license>BSD</license>
+  <url type="website">http://ros.org/wiki/asr_resources_for_vision</url>
 
   <buildtool_depend>catkin</buildtool_depend>
 </package>
