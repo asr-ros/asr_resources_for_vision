@@ -3,8 +3,9 @@
   <name>asr_resources_for_vision</name>
   <version>1.0.0</version>
   <description> 
-    This package is intended to hold bits and pieces that are related to computer vision in PbD, but that are not big enough to make up an own package.
-    Currently it contains the launch scripts that are start up data acquisition from vision sensors (stereo camera system and kinect). 
+    This package holds bits and pieces that are related to the acquisition of color and depth-image data streams with robot heads. 
+    Currently, it contains a hierarchy of launch scripts to start up simultaneous data acquisition from complex setups of vision sensors as encountered on robot heads 
+    (e.g. RGB-D in combination with a color camera or a stereo camera setup).
   </description>
   <author>Heizmann Heinrich, Meißner Pascal</author>
   <maintainer email="asr-ros@lists.kit.edu">Meißner Pascal</maintainer>
